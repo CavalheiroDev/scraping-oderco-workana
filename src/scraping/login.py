@@ -1,8 +1,16 @@
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
+from time import sleep
+from dotenv import load_dotenv, find_dotenv
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium import webdriver
+import os
 import chromedriver_binary
+
+
+load_dotenv(find_dotenv())
+CNPJ = os.environ.get('CNPJ')
+PASS = os.environ.get('PASS')
 
 
 def loggingSite(cnpj: str, password: str):
@@ -25,3 +33,12 @@ def loggingSite(cnpj: str, password: str):
         buttonLogin.click()
     finally:
         print('Ta logado, meu bom!')
+        return browser
+
+
+def getPages():
+    browser = loggingSite(CNPJ, PASS)
+    sleep(5)
+
+
+getPages()
