@@ -29,6 +29,7 @@ for category in linksMenu:
     itensPage = browser.find_elements_by_css_selector('.product-item-link')
     linksItens = list(
         map(lambda item: item.get_attribute('href'), itensPage))
+    break
 
 WebDriverWait(browser, 60).until(
     EC.presence_of_element_located((By.ID, 'authorization-trigger')))
@@ -47,7 +48,7 @@ buttonLogin.click()
 
 fild = ['Titulo', 'SKU', 'Preço', 'Marca',
         'Estoque', 'Descrição', 'Peso', 'Largura', 'Altura', 'Filial']
-c = open('./data.csv', 'w')
+c = open('./data.csv', 'w', encoding='utf-8')
 writer = csv.DictWriter(f=c, fieldnames=fild)
 writer.writeheader()
 
@@ -74,6 +75,7 @@ for item in linksItens:
             '[data-th="Filial"]').text
         writer.writerow({'Titulo': title, 'SKU': sku,
                         'Preço': price, 'Marca': marca, 'Estoque': stock, 'Descrição': details, 'Peso': weight, 'Largura': width, 'Altura': height, 'Filial': filial})
+        break
     else:
         continue
 browser.close()
