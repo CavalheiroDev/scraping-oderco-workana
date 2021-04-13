@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from dotenv import find_dotenv, load_dotenv
 from time import sleep
-import chromedriver_binary
 import os
 import csv
 
@@ -13,7 +12,7 @@ load_dotenv(find_dotenv())
 CNPJ = os.getenv('CNPJ')
 PASS = os.getenv('PASS')
 
-browser = webdriver.Chrome()
+browser = webdriver.Firefox()
 browser.get('https://www.oderco.com.br/')
 
 WebDriverWait(browser, 60).until(
@@ -27,6 +26,7 @@ for category in linksMenu:
     browser.get(category)
     sleep(3)
     itensPage = browser.find_elements_by_css_selector('.product-item-link')
+
     linksItens = list(
         map(lambda item: item.get_attribute('href'), itensPage))
     break

@@ -1,5 +1,2 @@
 selenium
-chromedriver_binary
 python-dotenv
-beautifulsoup4
-csv
