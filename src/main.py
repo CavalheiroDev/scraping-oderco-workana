@@ -45,10 +45,10 @@ passLogin.send_keys(PASS)
 buttonLogin = browser.find_element_by_css_selector('[type=submit]')
 buttonLogin.click()
 
-c = open('../data.csv', 'wb')
-fildnames = ['Titulo', 'SKU', 'Preço', 'Marca',
-             'Estoque', 'Descrição', 'Peso', 'Largura', 'Altura', 'Filial']
-writer = csv.DictWriter(c, fildnames=fildnames)
+fild = ['Titulo', 'SKU', 'Preço', 'Marca',
+        'Estoque', 'Descrição', 'Peso', 'Largura', 'Altura', 'Filial']
+c = open('./data.csv', 'w')
+writer = csv.DictWriter(f=c, fieldnames=fild)
 writer.writeheader()
 
 for item in linksItens:
@@ -72,8 +72,8 @@ for item in linksItens:
             '[data-th="Altura"]').text
         filial = browser.find_element_by_css_selector(
             '[data-th="Filial"]').text
-        writer.writerow({'title': title, 'sku': sku,
-                        'price': price, 'marca': marca, 'stock': stock, 'details': details, 'weight': weight, 'width': width, 'height': height, 'filial': filial})
+        writer.writerow({'Titulo': title, 'SKU': sku,
+                        'Preço': price, 'Marca': marca, 'Estoque': stock, 'Descrição': details, 'Peso': weight, 'Largura': width, 'Altura': height, 'Filial': filial})
     else:
         continue
 browser.close()
